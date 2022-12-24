@@ -47,6 +47,22 @@
           document.getElementById('error-message').innerHTML = errorMessage;
         });
       });
+      
+      // Listen for the "Sign in with Google" button click
+var googleSigninButton = document.getElementById('google-signin-button');
+googleSigninButton.addEventListener('click', function() {
+  // Sign in with Google
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // The signed-in user info.
+    var user = result.user;
+    // Redirect to the profile page after the user signs in
+    window.location.replace("otherpage.html");
+  }).catch(function(error) {
+    // Handle errors
+    console.error(error);
+  });
+});
     </script>
   </body>
 </html>

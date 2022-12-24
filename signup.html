@@ -90,7 +90,7 @@ form.addEventListener('submit', function(event) {
   // Try to sign up the user
   firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
     // If the sign up is successful, redirect the user to the profile page
-    window.location.replace("profile.html");
+    window.location.replace("otherpage.html");
   }).catch(function(error) {
     // If the sign up fails, display an error message
     var errorMessage = error.message;

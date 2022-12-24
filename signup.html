@@ -98,6 +98,22 @@ form.addEventListener('submit', function(event) {
     document.getElementById('error-message').innerHTML = errorMessage;
   });
 });
+      
+      / Listen for the "Sign up with Google" button click
+var googleSignupButton = document.getElementById('google-signup-button');
+googleSignupButton.addEventListener('click', function() {
+  // Sign up with Google
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+    // The signed-in user info.
+    var user = result.user;
+    // Redirect to the profile page after the user signs up
+    window.location.replace("otherpage.html");
+  }).catch(function(error) {
+    // Handle errors
+    console.error(error);
+  });
+});
     </script>
   </body>
 </html>

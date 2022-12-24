@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <!-- Load the Firebase library -->
+    <link rel="stylesheet" href="login.css" />
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script>
+      // Initialize Firebase
+      var firebaseConfig = {
+        // Your Firebase configuration goes here
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  </head>
+  <body>
+    <!-- Display an error message if the login fails -->
+    <div id="error-message"></div>
+
+    <!-- Display the login form -->
+    <form id="login-form">
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <button type="submit">Log In</button>
+    </form>
+
+    <!-- Add a script to handle the form submission and login -->
+    <script>
+      var form = document.getElementById('login-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        var email = form.email.value;
+        var password = form.password.value;
+        firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+          // Redirect to the other page upon successful login
+          window.location.replace("otherpage.html");
+        }).catch(function(error) {
+          // Display an error message if the login fails
+          var errorMessage = error.message;
+          document.getElementById('error-message').innerHTML = errorMessage;
+        });
+      });
+    </script>
+  </body>
+</html>

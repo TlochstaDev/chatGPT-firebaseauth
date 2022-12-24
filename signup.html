@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <!-- Load the Firebase library -->
+    <style>
+      body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  width: 350px;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 30px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+form input[type="email"],
+form input[type="password"] {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: #fff;
+  border: 0;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#error-message {
+  color: #f44336;
+  margin: 20px auto;
+  text-align: center;
+}
+
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <script>
+      // Initialize Firebase
+      var firebaseConfig = {
+        apiKey: "AIzaSyClCnms0V_WDJyQAgmJJlK3eZ8uVr9Yubg",
+    authDomain: "midnightservices.firebaseapp.com",
+    projectId: "midnightservices",
+    storageBucket: "midnightservices.appspot.com",
+    messagingSenderId: "565143011143",
+    appId: "1:565143011143:web:03c558465f6bdc43b09662"
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  </head>
+  <body>
+    <!-- Display an error message if the sign up fails -->
+    <div id="error-message"></div>
+
+    <!-- Display the sign up form -->
+    <form id="signup-form">
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <button type="submit">Sign Up</button>
+    </form>
+    <script>
+      // Listen for the form submission
+var form = document.getElementById('signup-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Get the email and password from the form
+  var email = form.email.value;
+  var password = form.password.value;
+
+  // Try to sign up the user
+  firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+    // If the sign up is successful, redirect the user to the profile page
+    window.location.replace("profile.html");
+  }).catch(function(error) {
+    // If the sign up fails, display an error message
+    var errorMessage = error.message;
+    document.getElementById('error-message').innerHTML = errorMessage;
+  });
+});
+    </script>
+  </body>
+</html>

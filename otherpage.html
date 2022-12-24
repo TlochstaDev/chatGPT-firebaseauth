@@ -7,7 +7,12 @@
     <script>
       // Initialize Firebase
       var firebaseConfig = {
-        // Your Firebase configuration goes here
+        apiKey: "AIzaSyClCnms0V_WDJyQAgmJJlK3eZ8uVr9Yubg",
+    authDomain: "midnightservices.firebaseapp.com",
+    projectId: "midnightservices",
+    storageBucket: "midnightservices.appspot.com",
+    messagingSenderId: "565143011143",
+    appId: "1:565143011143:web:03c558465f6bdc43b09662"
       };
       firebase.initializeApp(firebaseConfig);
     </script>
@@ -31,5 +36,50 @@
 
     <!-- Display a logout button -->
     <button id="logout-button">Log Out</button>
+    <script>
+      // Listen for the user's login state to change
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // If the user is logged in, display their profile information
+    var profilePicture = user.photoURL;
+    var username = user.displayName;
+    var bio = user.bio;
+    document.getElementById('profile-picture').src = profilePicture;
+    document.getElementById('username').innerHTML = username;
+    document.getElementById('bio').innerHTML = bio;
+  } else {
+    // If the user is not logged in, redirect them to the login page
+    window.location.replace("login.html");
+  }
+});
+
+// Handle the form submission to update the user's bio
+var form = document.getElementById('update-bio-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  var newBio = form.new-bio.value;
+  firebase.auth().currentUser.updateProfile({
+    bio: newBio
+  }).then(function() {
+    // Update the bio on the page after the update is successful
+    document.getElementById('bio').innerHTML = newBio;
+  }).catch(function(error) {
+    // Display an error message if the update fails
+    console.error(error);
+  });
+});
+
+// Handle the logout button click
+var logoutButton = document.getElementById('logout-button');
+logoutButton.addEventListener('click', function() {
+  firebase.auth().signOut().then(function() {
+    // Redirect to the login page after the user logs out
+    window.location.replace("login.html");
+  }).catch(function(error) {
+    // Display an error message if the logout fails
+    console.error(error);
+  });
+});
+    </script>
   </body>
 </html>

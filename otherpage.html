@@ -42,8 +42,8 @@
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // If the user is logged in, display their profile information
-    var profilePicture = user.photoURL;
-    var username = user.displayName;
+    var profilePicture = typeof user.photoURL !== 'undefined' ? user.photoURL : 'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg';
+    var username = typeof user.displayName !== 'undefined' ? user.displayName : 'User';
     var bio = user.bio;
     document.getElementById('profile-picture').src = profilePicture;
     document.getElementById('username').innerHTML = username;

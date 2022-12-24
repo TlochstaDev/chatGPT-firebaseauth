@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <!-- Load the Firebase library and the CSS file -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+    <link rel="stylesheet" type="text/css" href="profile.css">
+    <script>
+      // Initialize Firebase
+      var firebaseConfig = {
+        // Your Firebase configuration goes here
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  </head>
+  <body>
+    <!-- Display the user's profile information -->
+    <div id="profile">
+      <img id="profile-picture" src="#" alt="Profile picture">
+      <div id="profile-info">
+        <h1 id="username"></h1>
+        <p id="bio"></p>
+      </div>
+    </div>
+
+    <!-- Display a form to update the user's bio -->
+    <form id="update-bio-form">
+      <label for="new-bio">Update your bio:</label><br>
+      <textarea id="new-bio" name="new-bio"></textarea><br>
+      <button type="submit">Update</button>
+    </form>
+
+    <!-- Display a logout button -->
+    <button id="logout-button">Log Out</button>
+  </body>
+</html>
